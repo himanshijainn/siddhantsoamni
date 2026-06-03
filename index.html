@@ -313,38 +313,7 @@
   .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.6,.2,1), transform .9s cubic-bezier(.2,.6,.2,1); }
   .reveal.in { opacity: 1; transform: none; }
 
-  /* TWEAKS PANEL */
-  .twk-panel {
-    position: fixed; right: 16px; bottom: 16px; z-index: 9999; width: 280px;
-    max-height: calc(100vh - 32px); display: flex; flex-direction: column;
-    background: rgba(250,249,247,.85); color: #29261b;
-    backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%);
-    border: .5px solid rgba(255,255,255,.6); border-radius: 14px;
-    box-shadow: 0 1px 0 rgba(255,255,255,.5) inset, 0 12px 40px rgba(0,0,0,.18);
-    font: 11.5px/1.4 ui-sans-serif, system-ui, -apple-system, sans-serif; overflow: hidden;
-  }
-  .twk-panel.twk-collapsed .twk-body { display: none; }
-  .twk-hd { display: flex; align-items: center; justify-content: space-between; padding: 10px 8px 10px 14px; cursor: pointer; user-select: none; }
-  .twk-hd b { font-size: 12px; font-weight: 600; letter-spacing: .01em; }
-  .twk-x { appearance: none; border: 0; background: transparent; color: rgba(41,38,27,.55); width: 22px; height: 22px; border-radius: 6px; cursor: pointer; font-size: 13px; line-height: 22px; text-align: center; }
-  .twk-x:hover { background: rgba(0,0,0,.06); color: #29261b; }
-  .twk-body { padding: 2px 14px 14px; display: flex; flex-direction: column; gap: 10px; overflow-y: auto; overflow-x: hidden; min-height: 0; scrollbar-width: thin; scrollbar-color: rgba(0,0,0,.15) transparent; }
-  .twk-sect { font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: rgba(41,38,27,.45); padding: 10px 0 0; }
-  .twk-sect:first-child { padding-top: 0; }
-  .twk-row { display: flex; flex-direction: column; gap: 5px; }
-  .twk-lbl { display: flex; justify-content: space-between; align-items: baseline; color: rgba(41,38,27,.72); }
-  .twk-lbl span:first-child { font-weight: 500; }
-  .twk-field { appearance: none; box-sizing: border-box; width: 100%; min-width: 0; height: 26px; padding: 0 8px; border: .5px solid rgba(0,0,0,.1); border-radius: 7px; background: rgba(255,255,255,.6); color: inherit; font: inherit; outline: none; }
-  .twk-field:focus { border-color: rgba(0,0,0,.25); background: rgba(255,255,255,.85); }
-  select.twk-field { padding-right: 22px; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>"); background-repeat: no-repeat; background-position: right 8px center; }
-  .twk-seg { position: relative; display: flex; padding: 2px; border-radius: 8px; background: rgba(0,0,0,.06); user-select: none; }
-  .twk-seg-thumb { position: absolute; top: 2px; bottom: 2px; border-radius: 6px; background: rgba(255,255,255,.9); box-shadow: 0 1px 2px rgba(0,0,0,.12); transition: left .15s cubic-bezier(.3,.7,.4,1), width .15s; pointer-events: none; }
-  .twk-seg button { appearance: none; position: relative; z-index: 1; flex: 1; border: 0; background: transparent; color: inherit; font: inherit; font-weight: 500; min-height: 22px; border-radius: 6px; cursor: pointer; padding: 4px 6px; line-height: 1.2; }
-  .twk-chips { display: flex; gap: 6px; }
-  .twk-chip { position: relative; appearance: none; flex: 1; height: 28px; border: 0; border-radius: 6px; overflow: hidden; cursor: pointer; box-shadow: 0 0 0 .5px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.06); transition: transform .12s, box-shadow .12s; }
-  .twk-chip:hover { transform: translateY(-1px); box-shadow: 0 0 0 .5px rgba(0,0,0,.18), 0 4px 10px rgba(0,0,0,.12); }
-  .twk-chip.active { box-shadow: 0 0 0 2px rgba(0,0,0,.85), 0 2px 6px rgba(0,0,0,.15); }
-  .twk-chip-check { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+
 
   /* RESPONSIVE */
   @media (max-width: 1024px) {
@@ -369,8 +338,8 @@
     .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
     .stats { grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
     .stat { padding: 22px 16px 22px 0; border-top: 1px solid var(--line-soft); }
+    .stat::before { display: none !important; }
     .stat:nth-child(odd) { padding-left: 0; }
-    .stat:nth-child(odd)::before { display: none; }
     .stat:nth-child(even) { padding-left: 24px; }
     .stat:nth-child(-n+2) { border-top: 0; }
     .tools-grid { grid-template-columns: 1fr 1fr; }
@@ -391,7 +360,10 @@
     .tools-grid { grid-template-columns: 1fr; }
     .cert-row { flex-direction: column; align-items: flex-start; gap: 12px; }
     .edu-card { padding: 32px 28px; }
-    .timeline { padding-left: 30px; }
+    .timeline { padding-left: 30px; overflow: visible; }
+    .timeline::before { left: 5px; }
+    .role::before { left: -25px; width: 10px; height: 10px; }
+    .role { padding-left: 24px; }
     .btn { width: 100%; text-align: center; }
     .cta-row { flex-direction: column; }
     .game-scores { gap: 22px; }
@@ -400,7 +372,6 @@
     .game-btn { flex: 1; }
     .q-choice { min-width: 0; flex: 1 1 100%; }
     .game-tab { flex: 1 1 auto; text-align: center; }
-    .twk-panel { display: none; }
   }
   @media (max-width: 380px) {
     .stats { grid-template-columns: 1fr; }
@@ -658,7 +629,7 @@
     <p class="reveal">Open to the right finance role where rigorous reporting and sharp analysis genuinely move the business. Let's start a conversation.</p>
     <div class="cta-row reveal">
       <a class="btn btn-gold" href="mailto:siddhantsomani01@gmail.com">Email Me</a>
-      <a class="btn btn-ghost" href="https://wa.me/917737685979" target="_blank" rel="noopener">WhatsApp · +91 77376 85979</a>
+      <a class="btn btn-ghost" href="https://wa.me/917737685979" target="_blank" rel="noopener">+91 77376 85979</a>
       <a class="btn btn-ghost" href="https://www.linkedin.com/in/siddhant-somani-7705a0255" target="_blank" rel="noopener">LinkedIn</a>
       <a class="btn btn-ghost" href="Siddhant-Somani-CV.pdf" download>Download CV</a>
     </div>
@@ -669,40 +640,6 @@
   Siddhant Somani · Gurugram · <span class="gold">siddhantsomani01@gmail.com</span> · Designed with intent · 2026
 </footer>
 
-<!-- TWEAKS PANEL (plain JS — no React/JSX/Babel) -->
-<div id="twk-panel" class="twk-panel">
-  <div class="twk-hd" id="twk-toggle">
-    <b>Tweaks</b>
-    <button class="twk-x" id="twk-close" title="Close">✕</button>
-  </div>
-  <div class="twk-body" id="twk-body">
-    <div class="twk-sect">Accent color</div>
-    <div class="twk-row">
-      <div class="twk-lbl"><span>Accent</span></div>
-      <div class="twk-chips" id="twk-accent-chips"></div>
-    </div>
-    <div class="twk-sect">Display font</div>
-    <div class="twk-row">
-      <div class="twk-lbl"><span>Headings</span></div>
-      <select class="twk-field" id="twk-font-select">
-        <option value="DM Serif Display">DM Serif Display</option>
-        <option value="Playfair Display">Playfair Display</option>
-        <option value="Cormorant Garamond">Cormorant Garamond</option>
-        <option value="Marcellus">Marcellus</option>
-      </select>
-    </div>
-    <div class="twk-sect">Background</div>
-    <div class="twk-row">
-      <div class="twk-lbl"><span>Tone</span></div>
-      <div class="twk-seg" id="twk-tone-seg">
-        <div class="twk-seg-thumb" id="twk-seg-thumb"></div>
-        <button type="button" data-tone="Charcoal">Charcoal</button>
-        <button type="button" data-tone="Ink">Ink</button>
-        <button type="button" data-tone="Espresso">Espresso</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script>
   // ---- Nav ----
@@ -933,98 +870,6 @@
     }, 'tally_best');
   })();
 
-  // ---- Tweaks Panel (plain JS) ----
-  (function () {
-    const FONT_MAP = {
-      'DM Serif Display': '"DM Serif Display", Georgia, serif',
-      'Playfair Display': '"Playfair Display", Georgia, serif',
-      'Cormorant Garamond': '"Cormorant Garamond", Georgia, serif',
-      'Marcellus': '"Marcellus", Georgia, serif'
-    };
-    const TONE_MAP = {
-      'Charcoal': ['#0B0D0F','#0F1215','#121519','#16191E'],
-      'Ink':      ['#090B10','#0D1018','#11151E','#151A24'],
-      'Espresso': ['#0D0B09','#120F0C','#19150F','#1D1813']
-    };
-    const ACCENT_OPTIONS = ['#C9A84C','#4FA87A','#5E93D6','#C97D4C','#AEB6BF'];
-    const TONES = ['Charcoal','Ink','Espresso'];
-
-    let state = { accent: '#C9A84C', font: 'DM Serif Display', tone: 'Charcoal' };
-
-    function hexToRgb(hex) {
-      const h = hex.replace('#','');
-      return [parseInt(h.slice(0,2),16), parseInt(h.slice(2,4),16), parseInt(h.slice(4,6),16)].join(', ');
-    }
-
-    function applyState() {
-      const r = document.documentElement;
-      r.style.setProperty('--accent-rgb', hexToRgb(state.accent));
-      r.style.setProperty('--serif', FONT_MAP[state.font] || FONT_MAP['DM Serif Display']);
-      const tone = TONE_MAP[state.tone] || TONE_MAP['Charcoal'];
-      r.style.setProperty('--bg', tone[0]);
-      r.style.setProperty('--bg-2', tone[1]);
-      r.style.setProperty('--panel', tone[2]);
-      r.style.setProperty('--panel-2', tone[3]);
-    }
-
-    // Build accent chips
-    const chipsEl = document.getElementById('twk-accent-chips');
-    ACCENT_OPTIONS.forEach(hex => {
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'twk-chip' + (hex === state.accent ? ' active' : '');
-      btn.style.background = hex;
-      btn.title = hex;
-      if (hex === state.accent) btn.innerHTML = '<div class="twk-chip-check"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M3 7.2 5.8 10 11 4.2" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke="rgba(0,0,0,0.7)"/></svg></div>';
-      btn.addEventListener('click', () => {
-        state.accent = hex;
-        chipsEl.querySelectorAll('.twk-chip').forEach((c, i) => {
-          c.classList.toggle('active', ACCENT_OPTIONS[i] === hex);
-          c.innerHTML = ACCENT_OPTIONS[i] === hex ? '<div class="twk-chip-check"><svg width="13" height="13" viewBox="0 0 14 14"><path d="M3 7.2 5.8 10 11 4.2" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" stroke="rgba(0,0,0,0.7)"/></svg></div>' : '';
-        });
-        applyState();
-      });
-      chipsEl.appendChild(btn);
-    });
-
-    // Font select
-    const fontSel = document.getElementById('twk-font-select');
-    fontSel.value = state.font;
-    fontSel.addEventListener('change', () => { state.font = fontSel.value; applyState(); });
-
-    // Tone segmented control
-    const seg = document.getElementById('twk-tone-seg');
-    const thumb = document.getElementById('twk-seg-thumb');
-    const toneBtns = seg.querySelectorAll('button');
-    function updateThumb(idx) {
-      const n = TONES.length;
-      thumb.style.left = 'calc(2px + ' + idx + ' * (100% - 4px) / ' + n + ')';
-      thumb.style.width = 'calc((100% - 4px) / ' + n + ')';
-    }
-    updateThumb(TONES.indexOf(state.tone));
-    toneBtns.forEach((btn, idx) => {
-      btn.addEventListener('click', () => {
-        state.tone = TONES[idx];
-        updateThumb(idx);
-        applyState();
-      });
-    });
-
-    // Collapse toggle
-    const panel = document.getElementById('twk-panel');
-    const twkToggle = document.getElementById('twk-toggle');
-    const twkClose = document.getElementById('twk-close');
-    twkToggle.addEventListener('click', (e) => {
-      if (e.target === twkClose) return;
-      panel.classList.toggle('twk-collapsed');
-    });
-    twkClose.addEventListener('click', (e) => {
-      e.stopPropagation();
-      panel.style.display = 'none';
-    });
-
-    applyState();
-  })();
 </script>
 </body>
 </html>
